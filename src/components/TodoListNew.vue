@@ -18,32 +18,24 @@
     </section>
 </template>
 
-<script>
-import { reactive, toRefs, inject, ref } from 'vue'
+<script setup>
+import { reactive, toRefs, inject } from 'vue'
 
-export default {
-    name: 'TodoListNew',
-    setup() {
-        const today = inject('today')
-        const addTodo = inject('addTodo')
-        const val_obj = reactive({
-            job: '',
-            date: today,
-            today: today
-        })
+const today = inject('today')
+const addTodo = inject('addTodo')
+const val_obj = reactive({
+    job: '',
+    date: today,
+    today: today
+})
 
-        const onAddTodo = () => {
-            if (val_obj.job.length > 0) {
-                addTodo(val_obj.job, val_obj.date)
-                val_obj.job = ''
-                val_obj.date = today
-            }
-        }
-
-        return {
-            ...toRefs(val_obj),
-            onAddTodo
-        }
-    },
+const onAddTodo = () => {
+    if (val_obj.job.length > 0) {
+        addTodo(val_obj.job, val_obj.date)
+        val_obj.job = ''
+        val_obj.date = today
+    }
 }
+
+const { job, date } = toRefs(val_obj)
 </script>

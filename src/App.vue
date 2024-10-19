@@ -8,20 +8,19 @@
   <todo-list-container/>
 </template>
 
-<script>
-import { inject } from 'vue'
-import TodoListContainer from './components/TodoListContainer.vue'
+<script setup>
+  import { inject } from 'vue'
+  import TodoListContainer from './components/TodoListContainer.vue'
 
-export default {
-  name: 'App',
-  setup() {
-    const today = inject('today')
-    return { today }
-  },
-  components: {
-    TodoListContainer
+  const today = inject('today')
+  // <script setup> 에서는 별도로 컴포넌트 선언이나 변수를 return하지 않아도 Vue가 자동으로 설정
+</script>
+
+<script>
+  // SFC의 name, inheritAttrs, 사용자 옵션 등은 따로 script 태그에 작성
+  export default {
+    name: 'App'
   }
-}
 </script>
 
 <style scoped>
